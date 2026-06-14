@@ -397,36 +397,97 @@
             });
         }
         
-        // Função para gerar PDF do briefing
+        // Função melhorada para gerar PDF com identidade visual do Cedro
         function gerarPDF(dados) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            doc.setFontSize(18);
-            doc.text("Cedro Carpintaria Premium", 20, 20);
+            // Cores do site Cedro
+            const corPrimaria = "#1a3c34";      // Verde escuro (CTA e logo)
+            const corDestaque = "#c5a46e";      // Dourado/bege (accent)
+            const corTexto = "#1f2937";         // Slate escuro
+            
+            // === CABEÇALHO ===
+            // Faixa colorida no topo
+            doc.setFillColor(26, 60, 52); // #1a3c34
+            doc.rect(0, 0, 210, 28, 'F');
+            
+            // Logo "C" (círculo + letra)
+            doc.setFillColor(197, 164, 110); // #c5a46e
+            doc.circle(22, 14, 7, 'F');
+            doc.setTextColor(255, 255, 255);
             doc.setFontSize(14);
-            doc.text("Briefing de Projeto", 20, 30);
+            doc.setFont(undefined, 'bold');
+            doc.text("C", 19.5, 17.5);
             
-            doc.setFontSize(11);
-            let y = 45;
+            // Nome da empresa
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(16);
+            doc.text("Cedro Carpintaria Premium", 35, 13);
             
-            const campos = [
+            doc.setFontSize(10);
+            doc.text("Briefing de Projeto", 35, 20);
+            
+            // === CORPO ===
+            let y = 42;
+            doc.setTextColor(31, 41, 55); // corTexto
+            
+            // Função auxiliar para criar seção
+            function addSection(titulo, campos) {
+                // Título da seção
+                doc.setFillColor(245, 245, 245);
+                doc.rect(15, y - 5, 180, 8, 'F');
+                doc.setFontSize(11);
+                doc.setFont(undefined, 'bold');
+                doc.setTextColor(26, 60, 52);
+                doc.text(titulo, 18, y);
+                y += 10;
+                
+                doc.setFont(undefined, 'normal');
+                doc.setTextColor(31, 41, 55);
+                
+                campos.forEach(([label, valor]) => {
+                    if (valor) {
+                        doc.setFontSize(10);
+                        doc.setTextColor(26, 60, 52);
+                        doc.text(label + ":", 20, y);
+                        doc.setTextColor(31, 41, 55);
+                        doc.text(valor, 70, y);
+                        y += 7;
+                    }
+                });
+                
+                y += 6; // Espaço entre seções
+            }
+            
+            // Seção 1: Dados de Contato
+            addSection("DADOS DE CONTATO", [
                 ["Nome", dados.nome],
                 ["E-mail", dados.email],
-                ["Telefone / WhatsApp", dados.telefone],
-                ["Cidade / Estado", dados.cidade],
-                ["Data preferida", dados.data_orcamento],
+                ["Telefone / WhatsApp", dados.telefone]
+            ]);
+            
+            // Seção 2: Localização
+            addSection("LOCALIZAÇÃO", [
+                ["Cidade / Estado", dados.cidade]
+            ]);
+            
+            // Seção 3: Detalhes do Projeto
+            addSection("DETALHES DO PROJETO", [
                 ["Tipo de Serviço", dados.tipo],
-            ];
+                ["Data preferida", dados.data_orcamento]
+            ]);
             
-            campos.forEach(([label, valor]) => {
-                if (valor) {
-                    doc.text(`${label}: ${valor}`, 20, y);
-                    y += 8;
-                }
-            });
+            // === RODAPÉ ===
+            doc.setDrawColor(200, 200, 200);
+            doc.line(15, y + 5, 195, y + 5);
             
-            doc.text(`Data de geração: ${new Date().toLocaleDateString('pt-BR')}`, 20, y + 10);
+            doc.setFontSize(8);
+            doc.setTextColor(100, 100, 100);
+            doc.text("Cedro Carpintaria • Madeira com origem legal (SISFLORA)", 15, y + 12);
+            
+            const dataGeracao = new Date().toLocaleDateString('pt-BR');
+            doc.text("Gerado em: " + dataGeracao, 195, y + 12, { align: 'right' });
             
             return doc;
         }
@@ -465,7 +526,6 @@
             
             // Tentar compartilhar PDF (mobile)
             if (navigator.share && navigator.canShare) {
-                // Gera o PDF como blob
                 const pdfBlob = doc.output('blob');
                 const pdfFile = new File([pdfBlob], "briefing-cedro.pdf", { type: "application/pdf" });
                 
@@ -474,13 +534,12 @@
                     title: "Briefing Cedro",
                     text: mensagemCurta
                 }).catch(() => {
-                    // Fallback: abrir WhatsApp
                     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagemCurta)}`;
                     window.open(url, '_blank');
                     doc.save("briefing-cedro.pdf");
                 });
             } else {
-                // Desktop: baixar PDF + abrir WhatsApp
+                // Desktop
                 doc.save("briefing-cedro.pdf");
                 const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagemCurta)}`;
                 window.open(url, '_blank');
