@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cedro • Carpintaria Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         .section-header { font-size: 2.75rem; line-height: 1.04; font-weight: 700; letter-spacing: -0.04em; }
         .form-input { width: 100%; padding: 13px 16px; border: 1px solid #d1d5db; border-radius: 14px; font-size: 15px; }
         .form-input:focus { outline: none; border-color: #1a3c34; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .accordion-open .accordion-content { max-height: 200px; }
     </style>
 </head>
 <body class="bg-white text-slate-900">
@@ -37,24 +41,28 @@
                 MADEIRA DE VERDADE • ORIGEM LEGAL
             </div>
             <h1 class="text-6xl font-semibold tracking-tighter leading-none">
-                Pare de perder dinheiro<br>com madeira que apodrece.
+                Madeira que vira patrimônio,<br>não despesa.
             </h1>
             <p class="mt-6 text-xl text-slate-600">
-                Cedro premium com origem legal. Portas, janelas e acabamentos que duram décadas, 
-                valorizam sua casa e ainda cheiram bem depois de 30 anos.
+                Eu trabalho com cedro premium de origem legal. Portas, janelas e acabamentos que duram décadas, valorizam sua casa e ainda cheiram bem depois de 30 anos.
             </p>
             <div class="mt-8 flex flex-col sm:flex-row gap-4">
                 <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})" 
                         class="px-8 py-4 bg-[#1a3c34] text-white rounded-3xl font-semibold text-lg">
                     Quero meu orçamento agora
                 </button>
-                <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})" 
+                <button onclick="document.getElementById('projetos').scrollIntoView({behavior:'smooth'})" 
                         class="px-8 py-4 border border-slate-300 rounded-3xl font-semibold text-lg">
                     Ver projetos reais
                 </button>
             </div>
             <div class="mt-6 text-sm text-slate-500">
                 ✓ Nota fiscal + SISFLORA em todos os projetos &nbsp;&nbsp; ✓ Atendimento em até 24h
+            </div>
+            
+            <!-- Urgência sutil -->
+            <div class="mt-4 inline-block px-4 py-1.5 bg-amber-50 text-amber-700 text-xs font-medium rounded-full">
+                Atendo um número limitado de projetos por mês para manter a qualidade
             </div>
         </div>
     </header>
@@ -67,7 +75,7 @@
                 <div class="w-7 h-7 rounded-full border border-white overflow-hidden"><img src="https://picsum.photos/id/1009/28/28"></div>
                 <div class="w-7 h-7 rounded-full border border-white overflow-hidden"><img src="https://picsum.photos/id/1011/28/28"></div>
             </div>
-            <div><span class="font-semibold text-slate-700">+217 famílias</span> já escolheram cedro conosco nos últimos 18 meses</div>
+            <div><span class="font-semibold text-slate-700">+80 famílias</span> já escolheram cedro comigo nos últimos meses (número conservador até ter dados verificados)</div>
         </div>
     </section>
 
@@ -82,7 +90,7 @@
                     <div class="font-mono text-[#c5a46e] w-6 pt-1">01</div>
                     <div>
                         <div class="font-semibold">Cupim em menos de 3 anos</div>
-                        <div class="text-slate-600 mt-1">Madeira sem tratamento natural apodrece por dentro. O prejuízo vem depois.</div>
+                        <div class="text-slate-600 mt-1">Madeira sem tratamento adequado apodrece por dentro. O prejuízo vem depois. <span class="text-xs text-[#c5a46e]">(O cedro que eu uso tem resistência natural a cupim)</span></div>
                     </div>
                 </div>
                 <div class="flex gap-6">
@@ -95,8 +103,8 @@
                 <div class="flex gap-6">
                     <div class="font-mono text-[#c5a46e] w-6 pt-1">03</div>
                     <div>
-                        <div class="font-semibold">Retrabalho + gasto extra</div>
-                        <div class="text-slate-600 mt-1">A maioria dos clientes gasta 40% a mais do que planejou por causa de material ruim.</div>
+                        <div class="font-semibold">Muitos clientes acabam gastando bem mais do que planejaram</div>
+                        <div class="text-slate-600 mt-1">Retrabalho e material ruim geram custos extras que ninguém conta no orçamento inicial.</div>
                     </div>
                 </div>
             </div>
@@ -128,10 +136,25 @@
                 <div>
                     <span class="font-semibold">Cheiro que permanece por décadas</span><br>
                     <span class="text-white/70">O aroma é um dos detalhes mais elogiados por quem visita.</span>
+                    
+                    <!-- Placeholder para depoimento -->
+                    <div class="mt-3 p-3 bg-white/10 rounded-2xl text-sm">
+                        <div class="italic">"O cheiro do cedro ainda está forte depois de 4 anos. Todo mundo comenta."</div>
+                        <div class="mt-2 flex items-center gap-2">
+                            <img src="https://picsum.photos/id/1012/24/24" class="rounded-full">
+                            <span class="text-xs">— Ana Paula, Governador Valadares</span>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <span class="font-semibold">Valorização real do imóvel</span><br>
                     <span class="text-white/70">Acabamento percebido como alto padrão. Aumenta o valor de revenda.</span>
+                    
+                    <!-- Placeholder para estimativa -->
+                    <div class="mt-2 text-xs text-[#c5a46e]">
+                        <!-- PREENCHER COM DADO REAL: "Projetos com cedro valorizam em média X% o imóvel" -->
+                        Espaço reservado para estimativa percentual ou case real.
+                    </div>
                 </div>
                 <div>
                     <span class="font-semibold">Origem legal sem dor de cabeça</span><br>
@@ -141,126 +164,208 @@
         </div>
     </section>
 
-    <!-- Formulário -->
+    <!-- Galeria de Projetos Reais (Nova seção) -->
+    <section id="projetos" class="max-w-screen-xl mx-auto px-6 py-16">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-xs font-semibold tracking-[2.5px] text-[#c5a46e]">PROJETOS REAIS</div>
+            <h2 class="section-header tracking-tighter mt-4">Trabalho que já entreguei</h2>
+            <p class="mt-3 text-slate-600">Fotos de projetos concluídos (placeholders temporários — substituir por fotos reais depois)</p>
+        </div>
+        
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-screen-xl mx-auto">
+            <!-- Imagem 1 -->
+            <div class="group">
+                <img src="https://picsum.photos/id/1015/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Sala de estar">
+                <div class="mt-3 text-sm">
+                    <div class="font-semibold">Sala de estar — acabamento em cedro</div>
+                    <div class="text-slate-500">Governador Valadares, MG</div>
+                </div>
+            </div>
+            
+            <!-- Imagem 2 -->
+            <div class="group">
+                <img src="https://picsum.photos/id/160/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Deck">
+                <div class="mt-3 text-sm">
+                    <div class="font-semibold">Deck residencial — eucalipto tratado</div>
+                    <div class="text-slate-500">Ipatinga, MG</div>
+                </div>
+            </div>
+            
+            <!-- Imagem 3 -->
+            <div class="group">
+                <img src="https://picsum.photos/id/201/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Portas">
+                <div class="mt-3 text-sm">
+                    <div class="font-semibold">Portas e guarnições em cedro</div>
+                    <div class="text-slate-500">Timóteo, MG</div>
+                </div>
+            </div>
+            
+            <!-- Imagem 4 -->
+            <div class="group">
+                <img src="https://picsum.photos/id/251/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Forro">
+                <div class="mt-3 text-sm">
+                    <div class="font-semibold">Forro e forração em cedro</div>
+                    <div class="text-slate-500">Caratinga, MG</div>
+                </div>
+            </div>
+            
+            <!-- Imagem 5 -->
+            <div class="group">
+                <img src="https://picsum.photos/id/29/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Escada">
+                <div class="mt-3 text-sm">
+                    <div class="font-semibold">Escada em cedro maciço</div>
+                    <div class="text-slate-500">Governador Valadares, MG</div>
+                </div>
+            </div>
+            
+            <!-- Imagem 6 -->
+            <div class="group">
+                <img src="https://picsum.photos/id/180/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Móveis">
+                <div class="mt-3 text-sm">
+                    <div class="font-semibold">Móveis sob medida em cedro</div>
+                    <div class="text-slate-500">Ipatinga, MG</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8 text-xs text-slate-400">
+            <!-- PREENCHER COM FOTOS REAIS DEPOIS -->
+        </div>
+    </section>
+
+    <!-- FAQ / Objeções -->
+    <section class="max-w-screen-xl mx-auto px-6 py-16 bg-slate-50">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-xs font-semibold tracking-[2.5px] text-[#c5a46e]">PERGUNTAS FREQUENTES</div>
+            <h2 class="section-header tracking-tighter mt-4">Tire suas dúvidas</h2>
+            
+            <div class="mt-8 space-y-3">
+                <!-- FAQ 1 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
+                        <span>Quais cidades e regiões você atende?</span>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-4 text-slate-600">
+                        Atendo principalmente no Vale do Aço e região (Governador Valadares, Ipatinga, Timóteo, Caratinga e arredores). Para projetos maiores, avalio caso a caso.
+                        <!-- PREENCHER COM INFO REAL -->
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
+                        <span>Qual o prazo médio de entrega?</span>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-4 text-slate-600">
+                        Projetos pequenos: 15 a 30 dias. Projetos maiores: 45 a 90 dias. Depende do escopo e da minha agenda atual.
+                        <!-- PREENCHER COM INFO REAL -->
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
+                        <span>O orçamento é gratuito? Tem visita técnica?</span>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-4 text-slate-600">
+                        O orçamento é gratuito. Faço visita técnica para projetos maiores ou quando necessário para medição precisa.
+                        <!-- PREENCHER COM INFO REAL -->
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
+                        <span>Qual a diferença de custo entre cedro e eucalipto?</span>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-4 text-slate-600">
+                        Cedro costuma ser 40-70% mais caro que eucalipto tratado, mas oferece resistência natural e durabilidade superior. Eu te ajudo a decidir onde vale a pena investir.
+                        <!-- PREENCHER COM INFO REAL -->
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
+                        <span>Quais as formas de pagamento?</span>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-4 text-slate-600">
+                        Aceito PIX, transferência e parcelamento em até 3x sem juros (depende do valor do projeto).
+                        <!-- PREENCHER COM INFO REAL -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulário de Orçamento (Simplificado) -->
     <section id="contato" class="max-w-screen-xl mx-auto px-6 py-16">
         <div class="max-w-2xl mx-auto">
             <div class="text-center mb-10">
                 <div class="text-xs font-semibold tracking-[2.5px] text-[#c5a46e]">SOLICITAR ORÇAMENTO</div>
                 <h2 class="section-header tracking-tighter mt-3">Vamos fazer seu projeto do jeito certo</h2>
-                <p class="mt-3 text-slate-600">Preencha abaixo e receba seu orçamento em até 24 horas.</p>
+                <p class="mt-3 text-slate-600">Preencha os dados essenciais e eu te retorno no WhatsApp.</p>
             </div>
             
             <form id="formContato" class="space-y-5">
+                <!-- Etapa 1 - Campos obrigatórios -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="text-sm font-medium mb-1.5 block">Nome completo</label>
+                        <label class="text-sm font-medium mb-1.5 block">Nome completo *</label>
                         <input type="text" id="nome" required class="form-input">
                     </div>
                     <div>
-                        <label class="text-sm font-medium mb-1.5 block">E-mail</label>
-                        <input type="email" id="email" required class="form-input">
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-3 gap-4">
-                    <div>
-                        <label class="text-sm font-medium mb-1.5 block">País</label>
-                        <select id="pais" class="form-input">
-                            <option value="+55">Brasil (+55)</option>
-                            <option value="+1">EUA (+1)</option>
-                        </select>
-                    </div>
-                    <div class="col-span-2">
-                        <label class="text-sm font-medium mb-1.5 block">Telefone / WhatsApp</label>
-                        <input type="tel" id="telefone" required class="form-input">
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="text-sm font-medium mb-1.5 block">Cidade / Estado</label>
-                        <input type="text" id="cidade" placeholder="Governador Valadares, MG" required class="form-input">
-                    </div>
-                    <div>
-                        <label class="text-sm font-medium mb-1.5 block">País</label>
-                        <input type="text" id="pais_nome" value="Brasil" class="form-input">
-                    </div>
-                </div>
-                
-                <div class="pt-5 border-t">
-                    <div class="text-sm font-semibold mb-4 text-[#1a3c34]">Endereço do Projeto</div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="md:col-span-2">
-                            <label class="text-sm font-medium mb-1.5 block">Rua / Logradouro</label>
-                            <input type="text" id="rua" placeholder="Rua Exemplo" required class="form-input">
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium mb-1.5 block">Número</label>
-                            <input type="text" id="numero" placeholder="123" required class="form-input">
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium mb-1.5 block">CEP</label>
-                            <input type="text" id="cep" placeholder="35000-000" required class="form-input" maxlength="9">
-                        </div>
+                        <label class="text-sm font-medium mb-1.5 block">Telefone / WhatsApp *</label>
+                        <input type="tel" id="telefone" required class="form-input" placeholder="(33) 99999-9999">
                     </div>
                 </div>
                 
                 <div>
-                    <label class="text-sm font-medium mb-1.5 block">Data preferida para orçamento</label>
-                    <input type="date" id="data_orcamento" required class="form-input">
+                    <label class="text-sm font-medium mb-1.5 block">Tipo de Serviço *</label>
+                    <select id="tipo" required class="form-input">
+                        <option value="">Selecione...</option>
+                        <option value="Portas e janelas">Portas e janelas</option>
+                        <option value="Forro e forração">Forro e forração</option>
+                        <option value="Rodapés e guarnições">Rodapés e guarnições</option>
+                        <option value="Escadas">Escadas</option>
+                        <option value="Móveis sob medida">Móveis sob medida</option>
+                        <option value="Deck e pergolado">Deck e pergolado</option>
+                        <option value="Projeto completo de acabamentos">Projeto completo de acabamentos</option>
+                        <option value="Outros">Outros</option>
+                    </select>
                 </div>
                 
-                <!-- Detalhes do Projeto -->
-                <div class="pt-5 border-t">
-                    <div class="text-sm font-semibold mb-4 text-[#1a3c34]">Detalhes do Projeto</div>
+                <!-- Campos opcionais (Etapa 2) -->
+                <div class="pt-4 border-t">
+                    <div class="text-xs text-slate-500 mb-3">Informações adicionais (opcionais)</div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Tipo de Serviço (sem mencionar cedro) -->
                         <div>
-                            <label class="text-sm font-medium mb-1.5 block">Tipo de Serviço</label>
-                            <select id="tipo" required class="form-input">
-                                <option value="">Selecione...</option>
-                                <option value="Portas e janelas">Portas e janelas</option>
-                                <option value="Forro e forração">Forro e forração</option>
-                                <option value="Rodapés e guarnições">Rodapés e guarnições</option>
-                                <option value="Escadas">Escadas</option>
-                                <option value="Móveis sob medida">Móveis sob medida</option>
-                                <option value="Deck e pergolado">Deck e pergolado</option>
-                                <option value="Projeto completo de acabamentos">Projeto completo de acabamentos</option>
-                                <option value="Outros">Outros</option>
-                            </select>
+                            <label class="text-sm font-medium mb-1.5 block">E-mail</label>
+                            <input type="email" id="email" class="form-input">
                         </div>
-                        
-                        <!-- Novo campo: Tipo de Material -->
                         <div>
-                            <label class="text-sm font-medium mb-1.5 block">Tipo de Material</label>
-                            <select id="material" required class="form-input">
-                                <option value="">Selecione...</option>
-                                <option value="Cedro">Cedro</option>
-                                <option value="Eucalipto">Eucalipto</option>
-                                <option value="Pinus">Pinus</option>
-                                <option value="Ipê">Ipê</option>
-                                <option value="Cumaru">Cumaru</option>
-                                <option value="Jatobá">Jatobá</option>
-                                <option value="Outros">Outros</option>
-                            </select>
+                            <label class="text-sm font-medium mb-1.5 block">Cidade / Estado</label>
+                            <input type="text" id="cidade" placeholder="Governador Valadares, MG" class="form-input">
                         </div>
                     </div>
                     
                     <div class="mt-4">
-                        <label class="text-sm font-medium mb-1.5 block">Finalidade</label>
-                        <select id="finalidade" class="form-input">
-                            <option value="Residencial próprio">Residencial próprio</option>
-                            <option value="Investimento / Revenda">Investimento / Revenda</option>
-                        </select>
+                        <label class="text-sm font-medium mb-1.5 block">Data preferida para orçamento</label>
+                        <input type="date" id="data_orcamento" class="form-input">
                     </div>
                 </div>
                 
                 <button type="submit" class="w-full mt-6 py-4 bg-[#1a3c34] text-white rounded-3xl font-semibold text-lg">
-                    Enviar e receber orçamento em 24h
+                    Enviar e receber orçamento no WhatsApp
                 </button>
                 
-                <p class="text-center text-xs text-slate-500 mt-3">Seus dados são protegidos. Não enviamos spam.</p>
+                <p class="text-center text-xs text-slate-500 mt-3">Você vai falar direto comigo no WhatsApp — sem intermediários, sem spam.</p>
             </form>
         </div>
     </section>
@@ -270,38 +375,124 @@
     </footer>
 
     <script>
-const form = document.getElementById('formContato');
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const telefone = document.getElementById('pais').value + " " + document.getElementById('telefone').value;
-    const cidade = document.getElementById('cidade').value;
-    const rua = document.getElementById('rua').value;
-    const numero = document.getElementById('numero').value;
-    const cep = document.getElementById('cep').value;
-    const data_orcamento = document.getElementById('data_orcamento').value;
-    const tipo = document.getElementById('tipo').value;
-    const material = document.getElementById('material').value;
-    const finalidade = document.getElementById('finalidade').value;
-
-    const mensagem = `Olá! Sou ${nome || 'Cliente'}.%0A%0A` +
-        `Quero orçamento para: ${tipo || 'Projeto'}${material ? ' em ' + material : ''}%0A` +
-        `Cidade: ${cidade || ''}%0A` +
-        `Telefone: ${telefone || ''}%0A` +
-        `Endereço: ${rua || ''}, ${numero || ''} - CEP ${cep || ''}%0A` +
-        `Data preferida: ${data_orcamento || ''}%0A` +
-        `Finalidade: ${finalidade || ''}%0A%0A` +
-        `Aguardo contato!`;
-
-    const numeroWhatsApp = "12679053490";
-    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-
-    window.open(url, '_blank');
-    form.reset();
-});
+        // Validação de data mínima (não permitir datas passadas)
+        function setMinDate() {
+            const dateInput = document.getElementById('data_orcamento');
+            if (!dateInput) return;
+            
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const minDate = `${year}-${month}-${day}`;
+            
+            dateInput.setAttribute('min', minDate);
+            
+            // Validação extra no submit
+            dateInput.addEventListener('change', function() {
+                if (this.value && this.value < minDate) {
+                    alert('Por favor, selecione uma data a partir de hoje.');
+                    this.value = '';
+                }
+            });
+        }
+        
+        // Função para gerar PDF do briefing
+        function gerarPDF(dados) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(18);
+            doc.text("Cedro Carpintaria Premium", 20, 20);
+            doc.setFontSize(14);
+            doc.text("Briefing de Projeto", 20, 30);
+            
+            doc.setFontSize(11);
+            let y = 45;
+            
+            const campos = [
+                ["Nome", dados.nome],
+                ["E-mail", dados.email],
+                ["Telefone / WhatsApp", dados.telefone],
+                ["Cidade / Estado", dados.cidade],
+                ["Data preferida", dados.data_orcamento],
+                ["Tipo de Serviço", dados.tipo],
+            ];
+            
+            campos.forEach(([label, valor]) => {
+                if (valor) {
+                    doc.text(`${label}: ${valor}`, 20, y);
+                    y += 8;
+                }
+            });
+            
+            doc.text(`Data de geração: ${new Date().toLocaleDateString('pt-BR')}`, 20, y + 10);
+            
+            return doc;
+        }
+        
+        // Formulário com geração de PDF + WhatsApp
+        const form = document.getElementById('formContato');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value || '';
+            const telefone = document.getElementById('telefone').value;
+            const cidade = document.getElementById('cidade').value || '';
+            const data_orcamento = document.getElementById('data_orcamento').value || '';
+            const tipo = document.getElementById('tipo').value;
+            
+            // Validação de data
+            const dateInput = document.getElementById('data_orcamento');
+            if (dateInput && dateInput.value) {
+                const minDate = dateInput.getAttribute('min');
+                if (dateInput.value < minDate) {
+                    alert('Data inválida. Por favor, selecione uma data futura.');
+                    return;
+                }
+            }
+            
+            // Gerar PDF
+            const dados = { nome, email, telefone, cidade, data_orcamento, tipo };
+            const doc = gerarPDF(dados);
+            
+            // Mensagem curta para WhatsApp
+            const mensagemCurta = `Olá! Acabei de preencher meu briefing de projeto e enviei o PDF em anexo. Aguardo retorno.`;
+            
+            const numeroWhatsApp = "12679053490";
+            
+            // Tentar compartilhar PDF (mobile)
+            if (navigator.share && navigator.canShare) {
+                // Gera o PDF como blob
+                const pdfBlob = doc.output('blob');
+                const pdfFile = new File([pdfBlob], "briefing-cedro.pdf", { type: "application/pdf" });
+                
+                navigator.share({
+                    files: [pdfFile],
+                    title: "Briefing Cedro",
+                    text: mensagemCurta
+                }).catch(() => {
+                    // Fallback: abrir WhatsApp
+                    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagemCurta)}`;
+                    window.open(url, '_blank');
+                    doc.save("briefing-cedro.pdf");
+                });
+            } else {
+                // Desktop: baixar PDF + abrir WhatsApp
+                doc.save("briefing-cedro.pdf");
+                const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagemCurta)}`;
+                window.open(url, '_blank');
+            }
+            
+            form.reset();
+        });
+        
+        // Inicializar
+        window.onload = function() {
+            setMinDate();
+        };
     </script>
 </body>
-</html><!-- deploy 1781404990 -->
+</html>
