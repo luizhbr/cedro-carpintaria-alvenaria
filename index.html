@@ -21,7 +21,12 @@
     <!-- Navbar -->
     <nav class="border-b border-slate-200 bg-white sticky top-0 z-50">
         <div class="max-w-screen-xl mx-auto px-6 py-5 flex items-center justify-between">
-            <img src="assets/cedro-logo.jpeg" class="h-11 w-auto" alt="Cedro Carpintaria Alvenaria - Est. 2008">
+            <div class="flex items-center gap-x-3">
+                <div class="w-8 h-8 bg-[#1a3c34] rounded-xl flex items-center justify-center">
+                    <span class="text-white font-bold text-lg">C</span>
+                </div>
+                <span class="font-semibold text-2xl tracking-tight">Cedro</span>
+            </div>
             <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})" 
                     class="px-6 py-2.5 text-sm font-semibold bg-[#1a3c34] text-white rounded-2xl hover:bg-black transition-colors">
                 Pedir Orçamento
@@ -159,7 +164,7 @@
         </div>
     </section>
 
-    <!-- Galeria de Projetos Reais -->
+    <!-- Galeria de Projetos Reais (Nova seção) -->
     <section id="projetos" class="max-w-screen-xl mx-auto px-6 py-16">
         <div class="max-w-3xl mx-auto">
             <div class="text-xs font-semibold tracking-[2.5px] text-[#c5a46e]">PROJETOS REAIS</div>
@@ -168,6 +173,7 @@
         </div>
         
         <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-screen-xl mx-auto">
+            <!-- Imagem 1 -->
             <div class="group">
                 <img src="https://picsum.photos/id/1015/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Sala de estar">
                 <div class="mt-3 text-sm">
@@ -175,6 +181,8 @@
                     <div class="text-slate-500">Governador Valadares, MG</div>
                 </div>
             </div>
+            
+            <!-- Imagem 2 -->
             <div class="group">
                 <img src="https://picsum.photos/id/160/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Deck">
                 <div class="mt-3 text-sm">
@@ -182,6 +190,8 @@
                     <div class="text-slate-500">Ipatinga, MG</div>
                 </div>
             </div>
+            
+            <!-- Imagem 3 -->
             <div class="group">
                 <img src="https://picsum.photos/id/201/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Portas">
                 <div class="mt-3 text-sm">
@@ -189,33 +199,103 @@
                     <div class="text-slate-500">Timóteo, MG</div>
                 </div>
             </div>
+            
+            <!-- Imagem 4 -->
+            <div class="group">
+                <img src="https://picsum.photos/id/251/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Forro">
+                <div class="mt-3 text-sm">
+                    <div class="font-semibold">Forro e forração em cedro</div>
+                    <div class="text-slate-500">Caratinga, MG</div>
+                </div>
+            </div>
+            
+            <!-- Imagem 5 -->
+            <div class="group">
+                <img src="https://picsum.photos/id/29/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Escada">
+                <div class="mt-3 text-sm">
+                    <div class="font-semibold">Escada em cedro maciço</div>
+                    <div class="text-slate-500">Governador Valadares, MG</div>
+                </div>
+            </div>
+            
+            <!-- Imagem 6 -->
+            <div class="group">
+                <img src="https://picsum.photos/id/180/600/400" class="w-full rounded-3xl object-cover aspect-[4/3]" alt="Móveis">
+                <div class="mt-3 text-sm">
+                    <div class="font-semibold">Móveis sob medida em cedro</div>
+                    <div class="text-slate-500">Ipatinga, MG</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8 text-xs text-slate-400">
+            <!-- PREENCHER COM FOTOS REAIS DEPOIS -->
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ / Objeções -->
     <section class="max-w-screen-xl mx-auto px-6 py-16 bg-slate-50">
         <div class="max-w-2xl mx-auto">
             <div class="text-xs font-semibold tracking-[2.5px] text-[#c5a46e]">PERGUNTAS FREQUENTES</div>
             <h2 class="section-header tracking-tighter mt-4">Tire suas dúvidas</h2>
             
             <div class="mt-8 space-y-3">
+                <!-- FAQ 1 -->
                 <div class="border border-slate-200 rounded-2xl overflow-hidden">
                     <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
                         <span>Quais cidades e regiões você atende?</span>
                         <span class="text-xl">+</span>
                     </button>
                     <div class="accordion-content px-6 pb-4 text-slate-600">
-                        Atendo principalmente no Vale do Aço e região (Governador Valadares, Ipatinga, Timóteo, Caratinga e arredores).
+                        Atendo principalmente no Vale do Aço e região (Governador Valadares, Ipatinga, Timóteo, Caratinga e arredores). Para projetos maiores, avalio caso a caso.
                         <!-- PREENCHER COM INFO REAL -->
                     </div>
                 </div>
+                
+                <!-- FAQ 2 -->
                 <div class="border border-slate-200 rounded-2xl overflow-hidden">
                     <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
                         <span>Qual o prazo médio de entrega?</span>
                         <span class="text-xl">+</span>
                     </button>
                     <div class="accordion-content px-6 pb-4 text-slate-600">
-                        Projetos pequenos: 15 a 30 dias. Projetos maiores: 45 a 90 dias.
+                        Projetos pequenos: 15 a 30 dias. Projetos maiores: 45 a 90 dias. Depende do escopo e da minha agenda atual.
+                        <!-- PREENCHER COM INFO REAL -->
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
+                        <span>O orçamento é gratuito? Tem visita técnica?</span>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-4 text-slate-600">
+                        O orçamento é gratuito. Faço visita técnica para projetos maiores ou quando necessário para medição precisa.
+                        <!-- PREENCHER COM INFO REAL -->
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
+                        <span>Qual a diferença de custo entre cedro e eucalipto?</span>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-4 text-slate-600">
+                        Cedro costuma ser 40-70% mais caro que eucalipto tratado, mas oferece resistência natural e durabilidade superior. Eu te ajudo a decidir onde vale a pena investir.
+                        <!-- PREENCHER COM INFO REAL -->
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="this.parentElement.classList.toggle('accordion-open')" class="w-full px-6 py-4 flex justify-between items-center text-left font-semibold">
+                        <span>Quais as formas de pagamento?</span>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-4 text-slate-600">
+                        Aceito PIX, transferência e parcelamento em até 3x sem juros (depende do valor do projeto).
                         <!-- PREENCHER COM INFO REAL -->
                     </div>
                 </div>
@@ -223,41 +303,7 @@
         </div>
     </section>
 
-    <!-- EQUIPE / QUEM FAZ O SEU PROJETO -->
-    <section class="max-w-screen-xl mx-auto px-6 py-16">
-        <div class="max-w-3xl mx-auto">
-            <div class="text-xs font-semibold tracking-[2.5px] text-[#c5a46e]">EQUIPE</div>
-            <h2 class="section-header tracking-tighter mt-4">Quem faz o seu projeto</h2>
-        </div>
-        
-        <div class="mt-10 max-w-3xl mx-auto">
-            <!-- Card Luiz Carlos -->
-            <div class="bg-white border border-slate-200 rounded-3xl p-8">
-                <div class="flex flex-col md:flex-row gap-8">
-                    <!-- Foto -->
-                    <div class="flex-shrink-0">
-                        <!-- SUBSTITUIR src PELA FOTO REAL DO LUIZ CARLOS -->
-                        <img src="assets/luiz-carlos.jpg" 
-                             class="w-40 h-40 rounded-2xl object-cover border border-slate-200" 
-                             alt="Luiz Carlos - Carpinteiro e Pedreiro">
-                    </div>
-                    
-                    <div class="flex-1">
-                        <div>
-                            <div class="font-semibold text-2xl">Luiz Carlos</div>
-                            <div class="text-[#c5a46e] font-medium">Carpinteiro e Pedreiro</div>
-                        </div>
-                        
-                        <div class="mt-4 text-slate-600 leading-relaxed">
-                            mais de 20 anos de experiência em carpintaria e alvenaria. No Brasil, especializado em telhados (incluindo estruturas de até 4 águas e embutidos), varandas personalizadas, muros, alvenaria estrutural e instalação de porcelanato e azulejos. Nos Estados Unidos, atuou por 5 anos com wood frame, instalação de janelas, decks, pergolados e varandas.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Formulário de Orçamento -->
+    <!-- Formulário de Orçamento (Simplificado) -->
     <section id="contato" class="max-w-screen-xl mx-auto px-6 py-16">
         <div class="max-w-2xl mx-auto">
             <div class="text-center mb-10">
@@ -267,6 +313,7 @@
             </div>
             
             <form id="formContato" class="space-y-5">
+                <!-- Etapa 1 - Campos obrigatórios -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="text-sm font-medium mb-1.5 block">Nome completo *</label>
@@ -293,6 +340,7 @@
                     </select>
                 </div>
                 
+                <!-- Campos opcionais (Etapa 2) -->
                 <div class="pt-4 border-t">
                     <div class="text-xs text-slate-500 mb-3">Informações adicionais (opcionais)</div>
                     
@@ -322,11 +370,12 @@
         </div>
     </section>
 
-    <footer class="bg-[#111111] py-8 text-center text-xs text-[#e5e5e5]">
+    <footer class="border-t py-8 text-center text-xs text-slate-400">
         © 2026 Cedro Carpintaria • Madeira com origem legal (SISFLORA)
     </footer>
 
     <script>
+        // Validação de data mínima (não permitir datas passadas)
         function setMinDate() {
             const dateInput = document.getElementById('data_orcamento');
             if (!dateInput) return;
@@ -339,6 +388,7 @@
             
             dateInput.setAttribute('min', minDate);
             
+            // Validação extra no submit
             dateInput.addEventListener('change', function() {
                 if (this.value && this.value < minDate) {
                     alert('Por favor, selecione uma data a partir de hoje.');
@@ -347,86 +397,41 @@
             });
         }
         
+        // Função para gerar PDF do briefing
         function gerarPDF(dados) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            const corPrimaria = "#1a3c34";
-            
-            doc.setFillColor(26, 60, 52);
-            doc.rect(0, 0, 210, 28, 'F');
-            
-            doc.setFillColor(197, 164, 110);
-            doc.circle(22, 14, 7, 'F');
-            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(18);
+            doc.text("Cedro Carpintaria Premium", 20, 20);
             doc.setFontSize(14);
-            doc.setFont(undefined, 'bold');
-            doc.text("C", 19.5, 17.5);
+            doc.text("Briefing de Projeto", 20, 30);
             
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(16);
-            doc.text("Cedro Carpintaria Premium", 35, 13);
+            doc.setFontSize(11);
+            let y = 45;
             
-            doc.setFontSize(10);
-            doc.text("Briefing de Projeto", 35, 20);
-            
-            let y = 42;
-            doc.setTextColor(31, 41, 55);
-            
-            function addSection(titulo, campos) {
-                doc.setFillColor(245, 245, 245);
-                doc.rect(15, y - 5, 180, 8, 'F');
-                doc.setFontSize(11);
-                doc.setFont(undefined, 'bold');
-                doc.setTextColor(26, 60, 52);
-                doc.text(titulo, 18, y);
-                y += 10;
-                
-                doc.setFont(undefined, 'normal');
-                doc.setTextColor(31, 41, 55);
-                
-                campos.forEach(([label, valor]) => {
-                    if (valor) {
-                        doc.setFontSize(10);
-                        doc.setTextColor(26, 60, 52);
-                        doc.text(label + ":", 20, y);
-                        doc.setTextColor(31, 41, 55);
-                        doc.text(valor, 70, y);
-                        y += 7;
-                    }
-                });
-                
-                y += 6;
-            }
-            
-            addSection("DADOS DE CONTATO", [
+            const campos = [
                 ["Nome", dados.nome],
                 ["E-mail", dados.email],
-                ["Telefone / WhatsApp", dados.telefone]
-            ]);
-            
-            addSection("LOCALIZAÇÃO", [
-                ["Cidade / Estado", dados.cidade]
-            ]);
-            
-            addSection("DETALHES DO PROJETO", [
+                ["Telefone / WhatsApp", dados.telefone],
+                ["Cidade / Estado", dados.cidade],
+                ["Data preferida", dados.data_orcamento],
                 ["Tipo de Serviço", dados.tipo],
-                ["Data preferida", dados.data_orcamento]
-            ]);
+            ];
             
-            doc.setDrawColor(200, 200, 200);
-            doc.line(15, y + 5, 195, y + 5);
+            campos.forEach(([label, valor]) => {
+                if (valor) {
+                    doc.text(`${label}: ${valor}`, 20, y);
+                    y += 8;
+                }
+            });
             
-            doc.setFontSize(8);
-            doc.setTextColor(100, 100, 100);
-            doc.text("Cedro Carpintaria • Madeira com origem legal (SISFLORA)", 15, y + 12);
-            
-            const dataGeracao = new Date().toLocaleDateString('pt-BR');
-            doc.text("Gerado em: " + dataGeracao, 195, y + 12, { align: 'right' });
+            doc.text(`Data de geração: ${new Date().toLocaleDateString('pt-BR')}`, 20, y + 10);
             
             return doc;
         }
         
+        // Formulário com geração de PDF + WhatsApp
         const form = document.getElementById('formContato');
         
         form.addEventListener('submit', function(e) {
@@ -439,6 +444,7 @@
             const data_orcamento = document.getElementById('data_orcamento').value || '';
             const tipo = document.getElementById('tipo').value;
             
+            // Validação de data
             const dateInput = document.getElementById('data_orcamento');
             if (dateInput && dateInput.value) {
                 const minDate = dateInput.getAttribute('min');
@@ -448,13 +454,18 @@
                 }
             }
             
+            // Gerar PDF
             const dados = { nome, email, telefone, cidade, data_orcamento, tipo };
             const doc = gerarPDF(dados);
             
+            // Mensagem curta para WhatsApp
             const mensagemCurta = `Olá! Acabei de preencher meu briefing de projeto e enviei o PDF em anexo. Aguardo retorno.`;
+            
             const numeroWhatsApp = "12679053490";
             
+            // Tentar compartilhar PDF (mobile)
             if (navigator.share && navigator.canShare) {
+                // Gera o PDF como blob
                 const pdfBlob = doc.output('blob');
                 const pdfFile = new File([pdfBlob], "briefing-cedro.pdf", { type: "application/pdf" });
                 
@@ -463,11 +474,13 @@
                     title: "Briefing Cedro",
                     text: mensagemCurta
                 }).catch(() => {
+                    // Fallback: abrir WhatsApp
                     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagemCurta)}`;
                     window.open(url, '_blank');
                     doc.save("briefing-cedro.pdf");
                 });
             } else {
+                // Desktop: baixar PDF + abrir WhatsApp
                 doc.save("briefing-cedro.pdf");
                 const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagemCurta)}`;
                 window.open(url, '_blank');
@@ -476,6 +489,7 @@
             form.reset();
         });
         
+        // Inicializar
         window.onload = function() {
             setMinDate();
         };
